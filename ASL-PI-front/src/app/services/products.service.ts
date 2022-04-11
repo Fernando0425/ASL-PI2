@@ -11,6 +11,14 @@ export class ProductsService {
   constructor(private http: HttpClient) {   }
 
   public getProduct(): Observable<Product[]>{
-    return this.http.get<Product[]>('http://localhost:3000/getproducts')
+    return this.http.get<Product[]>('http://localhost:3000/products');
   }
+
+  public addProduct(product: Product){
+    return this.http.post("http://localhost:3000/products", product);
+  }
+  
+  /*public updateProduct(id: string,updateProduct: Product):{
+    return this.http.put("http://localhost:3000/products/${id}", updateProduct);
+  }*/
 }

@@ -31,26 +31,26 @@
             <br>
             <br>
             <div class="modal-label">Nombre</div>
-            <input class="modal-input" [(ngModel)]="newName"  type="text">
+            <input class="modal-input" [(ngModel)]="producto.product_name"  type="text">
             <br>
             <br>
             <div class="modal-label">Precio</div>
-            <input class="modal-input" type="text" [(ngModel)]="newPrice">
+            <input class="modal-input" type="text" [(ngModel)]="producto.product_price">
             <br>
             <br>
             <div class="modal-label">Existencias</div>
-            <input class="modal-input" type="text" [(ngModel)]="newStock">
+            <input class="modal-input" type="text" [(ngModel)]="producto.product_stock">
             <br>
             <br>
             <div class="modal-label">URL de la imagen</div>
-            <input class="modal-input" type="text" [(ngModel)]="newURL">
+            <input class="modal-input" type="text" [(ngModel)]="producto.product_img">
             <br>
             <br>
             <br>
     
             <div class="buttons-area">
                 <button mat-raised-button style="background-color: red; color:white" (click)="toggleModal()">Cancelar</button>
-                <button mat-raised-button style="background-color: green; color: white;">Guardar</button>
+                <button mat-raised-button style="background-color: green; color: white;"(click)="newProduct()">Guardar</button>
             </div>
     
         </div>

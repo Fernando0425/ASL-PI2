@@ -91,7 +91,7 @@ export class NewSalePage {
         this.finalTotal = Number(this.totals.reduce((partial_sum, a) => Number(partial_sum) + Number(a),0))
     }
 
-    newSale() {
+    /*newSale() {
         let articles_id: Number[]  = [];
         let totalProducts = Number(this.quantities.reduce((partial_sum, a) => Number(partial_sum) + Number(a),0))
         this.basket.forEach(basketProduct => articles_id.push(basketProduct.product_id));
@@ -111,5 +111,5 @@ export class NewSalePage {
         addNewSale(newSale);
         this.router.navigate(['/sales'])
         
-    }
+    }*/
 }

@@ -15,6 +15,14 @@ export class ProductsComponent{
     newURL: String = '';
     newStock: Number = 0;
 
+    producto: Product = {
+        product_id: 0,
+        product_name: '',
+        product_price: 0,
+        product_stock: 0,
+        product_img: ''
+    }
+
     public searchText = '';
     options: String[] = [
         'Nombre',
@@ -85,17 +93,15 @@ export class ProductsComponent{
 
     
     newProduct() {
-        const newproduct: Product = {
-            product_id: 90,
-            product_name: this.newName,
-            product_price: this.newPrice,
-            product_stock: this.newStock,
-            product_img: this.newURL
-        };
+        delete this.producto.product_id;
 
-        products_original.push(newproduct);
-        this.active = !this.active;
-        this.products = products_original;
-    }
+        this.productsService.addProduct(this.producto)
+        .subscribe(
+            res =>{
+                console.log(res);
+            },
+            err => console.log(err)
+        )
+    }//Reiniciar la paguina 
 
 }
