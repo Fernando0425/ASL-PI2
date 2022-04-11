@@ -1,0 +1,63 @@
+<div class="margin">
+    <div class="top-container">
+        <button mat-icon-button routerLink="/sales">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h2>Nueva venta</h2>
+    </div>
+    <div class="main-container">
+        <div class="inventory-container">
+            <div class="search-bar">
+                <input type="text" [(ngModel)]="searchText" (ngModelChange)="search()">
+                <button mat-flat-button>
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+            <br>
+            <div class="product-grid">
+                <clickable-card class="product-card" *ngFor="let product of products" [product]="product"
+                    (click)="addBasket(product)"></clickable-card>
+            </div>
+        </div>
+
+        <div class="basket-container">
+            <div class="top-basket-container">
+                <h2>Canasta</h2>
+                <h3 *ngIf="basket.length == 0">No hay nada en la canasta</h3>
+                <div class="basket-products">
+                    <div *ngFor="let basketProduct of basket; let i = index" class="product">
+                        <img src="{{ basketProduct.product_img }}" alt="">
+                        <div class="card-content">
+                            <div class="card-title">{{ basketProduct.product_name }}</div>
+                            <div class="card-subtitle">Precio unitario: <b>$ {{basketProduct.product_price}}</b></div>
+                            <div class="card-subtitle">Precio total: <b>$ {{ totals[i] }}</b></div>
+                            <div class="bottom-container">
+                                <div class="card-incremental">
+                                    <button mat-icon-button (click)="decrementQuantity(basketProduct)">-</button>
+                                    <div class="quantity">{{ quantities[i] }}</div>
+                                    <button mat-icon-button (click)="incrementQuantity(basketProduct)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="delete-container">
+                            <button mat-icon-button (click)="eraseOneProduct(basketProduct)">
+                                <mat-icon>delete_outline</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div *ngIf="basket.length != 0" class="bottom-basket-container">
+                <h2>Total: $ {{ finalTotal }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-container">
+        <button mat-raised-button style="background-color: red; color: white;" (click)="eraseProducts()">Borrar
+            productos</button>
+        <button mat-raised-button style="background-color: green; color: white;" disabled="{{ basket.length == 0 }}"
+            (click)="newSale()">Realizar venta</button>
+    </div>
+</div>

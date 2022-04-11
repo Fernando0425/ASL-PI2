@@ -1,0 +1,15 @@
+<div class="container">
+    <img src="{{ product.product_img }}" alt="">
+    <div class="card-content">
+        <div class="card-title">{{ product.product_name }}</div>
+        <div class="card-subtitle">Precio unitario: <b>$ {{product.product_price}}</b></div>
+        <div class="card-subtitle">Precio total: <b>$ 100</b></div>
+        <div class="bottom-container">
+            <div class="card-incremental">
+                <button mat-icon-button>-</button>
+                <div class="quantity">1</div>
+                <button mat-icon-button>+</button>
+            </div>
+        </div>
+    </div>
+</div>

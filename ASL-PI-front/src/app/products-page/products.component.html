@@ -1,0 +1,58 @@
+<div class="margin">
+    <div [ngClass]="{'opaque-background': active}"></div>
+    <div class="products-container">
+        <div class="main-content">
+            <div class="search-bar">
+                <input type="text" [(ngModel)]="searchText"(ngModelChange)="search()">
+                <button mat-flat-button> 
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+            <div class="actions-bar">
+                <button mat-raised-button color="primary" (click)="toggleModal()">Nuevo producto</button>
+                <mat-form-field>
+                    <mat-label>Ordernar por: </mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let option of options" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <hr>
+            <div class="product-grid">
+                <product-card class="product-card" *ngFor="let product of products" [product]="product"></product-card>
+            </div>
+        </div>
+    
+    
+        <div class="modal-container" [ngClass]="{'modal-active': active}" *ngIf="active">
+            <div class="modal-title">Nuevo producto</div>
+            <br>
+            <br>
+            <div class="modal-label">Nombre</div>
+            <input class="modal-input" [(ngModel)]="newName"  type="text">
+            <br>
+            <br>
+            <div class="modal-label">Precio</div>
+            <input class="modal-input" type="text" [(ngModel)]="newPrice">
+            <br>
+            <br>
+            <div class="modal-label">Existencias</div>
+            <input class="modal-input" type="text" [(ngModel)]="newStock">
+            <br>
+            <br>
+            <div class="modal-label">URL de la imagen</div>
+            <input class="modal-input" type="text" [(ngModel)]="newURL">
+            <br>
+            <br>
+            <br>
+    
+            <div class="buttons-area">
+                <button mat-raised-button style="background-color: red; color:white" (click)="toggleModal()">Cancelar</button>
+                <button mat-raised-button style="background-color: green; color: white;">Guardar</button>
+            </div>
+    
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="card-container">
+    <div class="container">
+        <div class="card-header">
+            <div class="product-stock" [ngClass]="{'product-stock-green': product.product_stock >= 15, 'product-stock-yellow': product.product_stock < 15 && product.product_stock > 5, 'product-stock-red': product.product_stock <= 5 }">{{ product.product_stock }}</div>
+            <div class="edit-button">
+                <button mat-icon-button (click)="editProduct()">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="product-img">
+                <img src="{{ product.product_img }}" alt="">
+            </div>
+            <hr>
+            <div class="product-name">{{ product.product_name }}</div>
+            <div class="product-price">$ <b>{{ product.product_price }}</b></div>
+        </div>
+    </div>
+
+    <div class="modal-container" [ngClass]="{'modal-active': modify}" *ngIf=modify>
+        <div class="modal-title">Modificar producto</div>
+        <br>
+        <br>
+        <div class="modal-label">Nombre</div>
+        <input class="modal-input" type="text" value="{{product.product_name}}">
+        <br>
+        <br>
+        <div class="modal-label">Precio</div>
+        <input class="modal-input" type="text" value="{{product.product_price}}">
+        <br>
+        <br>
+        <div class="modal-label">Existencias</div>
+        <input class="modal-input" type="text" value="{{product.product_stock}}">
+        <br>
+        <br>
+        <div class="modal-label">URL de la imagen</div>
+        <input class="modal-input" type="text" value="{{product.product_img}}">
+        <br>
+        <br>
+        <br>
+    
+        <div class="buttons-area">
+            <button mat-raised-button style="background-color: red; color:white" (click)="toggleModal()">Cancelar</button>
+            <button mat-raised-button style="background-color: green; color: white;">Guardar</button>
+        </div>
+    </div>
+
+    <div [ngClass]="{'opaque-background': modify}"></div>
+</div>

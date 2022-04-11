@@ -1,0 +1,41 @@
+<div class="navbar">
+    <div class="navbar-items">
+        <div class="navbar-first-section">
+            <div class="item" id="logo" routerLink="/">
+                <div class="icon-label">
+                    <img src="assets/svg/asl-logo.svg">
+                </div>
+            </div>
+            <div class="item" id="products" routerLink="/products" [routerLinkActive]="['active-item']">
+                <div class="navbar-indicator"></div>
+                <div class="icon-label">
+                    <div class="navbar-label">Productos</div>
+                    <mat-icon>add_business</mat-icon>
+                </div>
+            </div>
+            <div class="item" id="sales" routerLink="/sales" [routerLinkActive]="['active-item']">
+                <div class="navbar-indicator"></div>
+                <div class="icon-label">
+                    <mat-icon>shopping_basket</mat-icon>
+                    <div class="navbar-label">Ventas</div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-second-section">
+            <div class="item" id="contact" routerLink="/contact" [routerLinkActive]="['active-item']">
+                <div class="navbar-indicator"></div>
+                <div class="icon-label">
+                    <mat-icon>email</mat-icon>
+                    <div class="navbar-label">Contacto</div>
+                </div>
+            </div>
+            <div class="item" id="settings" routerLink="/settings" [routerLinkActive]="['active-item']">
+                <div class="navbar-indicator"></div>
+                <div class="icon-label">
+                    <mat-icon>settings</mat-icon>
+                    <div class="navbar-label">Herramientas</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

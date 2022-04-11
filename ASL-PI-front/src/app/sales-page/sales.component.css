@@ -1,0 +1,30 @@
+.margin {
+    margin-left: 10vh;
+    padding: 15px;
+}
+.options-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.right-options button {
+    margin-right: 20px;
+}
+
+
+.table-container {
+    width: 100%;
+    height: 85vh;
+    overflow-y: scroll;
+}
+
+.table-container table {
+    width:100%;
+    text-align: center;
+}
+
+
+.table-container table th {
+    text-align: center;
+}

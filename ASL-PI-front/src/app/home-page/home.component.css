@@ -1,0 +1,105 @@
+.background {
+    background-image: url("../../assets/imgs/background2.jpg"), linear-gradient(180deg, rgba(2,0,36,0.5) 0%, rgba(255,243,80,0.8) 100%);;
+    background-blend-mode: multiply;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    animation: fade-in 0.3s ease-in;;
+    z-index: 1;
+}
+
+@keyframes fade-in {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        margin-top: 20px;
+    }
+    100% {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    /* margin: 20px; */
+    padding: 20px;
+    position: absolute;
+}
+
+.title {
+    color: white;
+    text-align: center;
+    z-index: 2;
+}
+
+.title > span {
+    font-size: 24px;
+}
+
+.title > h2 {
+    color: #FFF350;
+    font-size: 30px;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    z-index: 2;
+}
+
+.card {
+    background-color: white;
+    width: 20vw;
+    height: calc(100vh - 20vh);
+    opacity: 0;
+    border-radius: 10px;
+}
+
+.card > .card-img {
+    height: 33%;
+    background-size: cover;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.card > .description {
+    padding: 20px;
+    height: 66%;
+    font-size: 0.95vw;
+}
+
+#card1 {
+    animation: fade-up 0.5s linear 0.5s;
+    animation-fill-mode: forwards;
+}
+
+#card2 {
+    animation: fade-up 0.5s linear 0.65s;
+    animation-fill-mode: forwards;
+}
+
+#card3 {
+    animation: fade-up 0.5s linear 0.8s;
+    animation-fill-mode: forwards;
+}
+
+
+#card1 > .card-img {
+    background-image: url("../../assets/imgs/inv.jpg");
+}
+
+#card2 > .card-img {
+    background-image: url("../../assets/imgs/sale.jpg");
+}
+
+#card3 > .card-img {
+    background-image: url("../../assets/imgs/anal.jpg");
+}

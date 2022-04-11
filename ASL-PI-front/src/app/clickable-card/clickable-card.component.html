@@ -1,0 +1,16 @@
+<div class="card-container">
+    <div matRipple class="container">
+        <div class="card-header">
+            <div class="product-stock" [ngClass]="{'product-stock-green': product.product_stock >= 15, 'product-stock-yellow': product.product_stock < 15 && product.product_stock > 5, 'product-stock-red': product.product_stock <= 5 }">{{ product.product_stock }}</div>
+        </div>
+        <div class="card-content">
+            <div class="product-img">
+                <img src="{{ product.product_img }}" alt="">
+            </div>
+            <hr>
+            <div class="product-name">{{ product.product_name }}</div>
+            <div class="product-price">$ <b>{{ product.product_price }}</b></div>
+        </div>
+    </div>
+</div>
+

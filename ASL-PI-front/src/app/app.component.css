@@ -1,0 +1,10 @@
+navbar-component {
+    position: fixed;
+    z-index: 1000;
+}
+
+main {
+    /* margin-left: 8vh; */
+    overflow: hidden;
+    /* padding: 20px; */
+}
