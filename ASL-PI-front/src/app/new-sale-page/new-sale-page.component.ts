@@ -17,10 +17,9 @@ export class NewSalePage {
     finalTotal = 0;
     searchText = '';
     product_sale: Product_sale={
-        quantyty: 0,
-        sale_price: 0,
-        product_id: 0,
-        sale_id: 0
+        total: 0,
+        products_id: [],
+        quantity: []
     }
 
     constructor(private productsService: ProductsService){
@@ -137,19 +136,24 @@ export class NewSalePage {
     }*/
 
     newSale(){
+        let idx_product: Number[] = [];
         this.basket.forEach(product => {
-            const idx = this.basket.findIndex(myProduct => myProduct.product_id == product.product_id);
+            idx_product.push(this.products.findIndex(myProduct => myProduct.product_id == product.product_id) +1 );
+        } );
 
-            this.product_sale = {quantyty : this.quantities[idx], sale_price : this.totals[idx],product_id : idx, sale_id : 0}
-            console.log(this.product_sale)
-            /*this.productsService.addProduct(this.product_sale)
+       this.product_sale= {
+            total: this.finalTotal, //Quantity     
+            products_id:idx_product , //Total
+            quantity:this.totals//Productos
+       }
+       console.log(this.product_sale);
+       
+            this.productsService.addProductSale(this.product_sale)
         .subscribe(
             res =>{
                 console.log(res);
             },
             err => console.log(err)
         )
-    }*/
-        } );
     }
 }
