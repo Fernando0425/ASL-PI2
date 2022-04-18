@@ -1,10 +1,8 @@
 import { Component } from "@angular/core";
-import { Router } from "@angular/router";
-import { products_original } from "../controllers/product.controller";
 import { ProductsService} from '../services/products.service'
-import { salesOriginal, addNewSale } from "../controllers/sale.controller";
 import { Product } from "../models/product.model";
 import { Sale } from "../models/sale.model";
+import { Product_sale } from "../models/product_sale";
 
 @Component({
     selector: "new-sale-page",
@@ -18,6 +16,12 @@ export class NewSalePage {
     totals: Number[] = [];
     finalTotal = 0;
     searchText = '';
+    product_sale: Product_sale={
+        quantyty: 0,
+        sale_price: 0,
+        product_id: 0,
+        sale_id: 0
+    }
 
     constructor(private productsService: ProductsService){
 
@@ -130,6 +134,22 @@ export class NewSalePage {
         console.log(newSale);
         addNewSale(newSale);
         this.router.navigate(['/sales'])
-        
     }*/
+
+    newSale(){
+        this.basket.forEach(product => {
+            const idx = this.basket.findIndex(myProduct => myProduct.product_id == product.product_id);
+
+            this.product_sale = {quantyty : this.quantities[idx], sale_price : this.totals[idx],product_id : idx, sale_id : 0}
+            console.log(this.product_sale)
+            /*this.productsService.addProduct(this.product_sale)
+        .subscribe(
+            res =>{
+                console.log(res);
+            },
+            err => console.log(err)
+        )
+    }*/
+        } );
+    }
 }

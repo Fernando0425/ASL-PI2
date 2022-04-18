@@ -4,4 +4,4 @@ export interface Product {
     product_price: Number;
     product_stock: Number;
     product_img: String;
-}
+    }
