@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { products_original } from "../controllers/product.controller";
+import { ProductsService} from '../services/products.service'
 import { salesOriginal, addNewSale } from "../controllers/sale.controller";
 import { Product } from "../models/product.model";
 import { Sale } from "../models/sale.model";
@@ -12,23 +13,38 @@ import { Sale } from "../models/sale.model";
 })
 
 export class NewSalePage {
-    constructor(private router: Router) {}
-    products = [...products_original];
     basket: Product[] = [];
     quantities: Number[] = [];
     totals: Number[] = [];
     finalTotal = 0;
     searchText = '';
 
-    search() {
-        this.products = products_original.filter(product => {
+    constructor(private productsService: ProductsService){
+
+    }
+
+    products: Product[] = [];
+    Filteredproducts: Product[] = [];
+
+    ngOnInit(){
+        this.productsService.getProduct().subscribe(
+            res => {
+                this.products = res; 
+                this.Filteredproducts = res; 
+                //console.log(this.products);
+            },
+            err => console.log(err)
+        )
+    }
+
+    search(): void {
+        this.products = this.Filteredproducts.filter(product => {
             if (product.product_name.toLowerCase().includes(this.searchText.toLowerCase())) {
                 return true;
             } else {
                 return false;
             }
         })
-        console.log(this.searchText);
     }
 
     addBasket(product: Product) {
@@ -37,6 +53,7 @@ export class NewSalePage {
             this.quantities.push(1);
             this.totals.push(product.product_price);
             const idx = this.products.findIndex(myProduct => myProduct.product_id == product.product_id);
+            //console.log(this.totals);
             const newStock = Number(product.product_stock)  - 1;
             this.products[idx].product_stock = newStock;
             this.finalTotal = Number(this.totals.reduce((partial_sum, a) => Number(partial_sum) + Number(a),0)); 
@@ -75,6 +92,9 @@ export class NewSalePage {
         let filterBasket = this.basket.filter(myProduct => myProduct.product_id != product.product_id);
         this.quantities[idx] = 1;
         this.basket = filterBasket;
+        //this.totals[idx] = Number(this.quantities[idx]) * Number(product.product_price);
+        this.totals.splice(idx,1);
+        //console.log(this.totals);
         this.finalTotal = Number(this.totals.reduce((partial_sum, a) => Number(partial_sum) + Number(a),0))
     }
 
