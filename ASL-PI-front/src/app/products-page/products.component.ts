@@ -97,7 +97,7 @@ export class ProductsComponent{
         this.productsService.addProduct(this.producto)
         .subscribe(
             res =>{
-                //console.log(res);
+                console.log(res);
                 this.toggleModal();
                 this.ngOnInit();
             },

@@ -4,12 +4,12 @@ const Product = require('../models/product');
 exports.getSales = (req, res, next) => {
     Sale.findAll().then(sales => {
         res.status(200).json({
-            message: "Sales retrieve succesfully",
-            sales: sales
+            //message: "Sales retrieve succesfully",
+            sales,
         });
     }).catch(err => {
         res.status(200).json({
-            message: "Could not retrieve sales"
+            //message: "Could not retrieve sales"
         });
     });
 
@@ -17,6 +17,7 @@ exports.getSales = (req, res, next) => {
 
 exports.getSaleProducts = (req, res, next) => {
     const sale_id = req.body.sale_id;
+    console.log(sale_id);
     Sale.findAll({
         where: {
             sale_id: sale_id
@@ -26,7 +27,7 @@ exports.getSaleProducts = (req, res, next) => {
         res.status(200).json(results[0]);
     }).catch(err => {
         res.status(500).json({
-            message: "Could not retrieve sale products",
+            message: "Could not retrieve sale products"+sale_id,
             error: err
         });
         console.log(err);
@@ -54,12 +55,12 @@ exports.addSale = (req, res, next) => {
             })
         }
         res.status(200).json({
-            message: 'Sale created succesfully',
-            sale: sale
+            //message: 'Sale created succesfully',
+            sale
         });
     }).catch(err => {
         res.status(500).json({
-            message: 'Could not create sale',
+            //message: 'Could not create sale',
             error: err
         });
     });   

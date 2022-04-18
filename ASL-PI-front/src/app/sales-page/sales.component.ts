@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { salesOriginal } from '../controllers/sale.controller';
+/*import { salesOriginal } from '../controllers/sale.controller';*/
 
 @Component({
     selector: 'sales-component',
@@ -8,7 +8,7 @@ import { salesOriginal } from '../controllers/sale.controller';
 })
 
 export class SalesComponent {
-    sales = [...salesOriginal];
+    sales = [];
     displayedColumns: string[] = ['id', 'date', 'day', 'month', 'year', 'total', 'articles']
     days = ['Domingo', 'Lunes','Martes', 'Miercoles','Jueves', 'Viernes', 'Sabado']
     months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo','Junio','Julio', 'Agosto','Septiembre','Octubre','Noviembre', 'Diciembre']
