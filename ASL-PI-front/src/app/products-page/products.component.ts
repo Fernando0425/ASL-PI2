@@ -42,7 +42,7 @@ export class ProductsComponent{
             res => {
                 this.products = res; 
                 this.Filteredproducts = res; 
-                console.log(this.products);
+                //console.log(this.products);
             },
             err => console.log(err)
         )
@@ -98,10 +98,12 @@ export class ProductsComponent{
         this.productsService.addProduct(this.producto)
         .subscribe(
             res =>{
-                console.log(res);
+                //console.log(res);
+                this.toggleModal();
+                this.ngOnInit();
             },
             err => console.log(err)
         )
-    }//Reiniciar la paguina 
+    }
 
 }
