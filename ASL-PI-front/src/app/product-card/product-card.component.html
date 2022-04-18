@@ -23,26 +23,26 @@
         <br>
         <br>
         <div class="modal-label">Nombre</div>
-        <input class="modal-input" type="text" value="{{product.product_name}}">
+        <input class="modal-input" type="text"  [(ngModel)]="product.product_name" value="{{product.product_name}}">
         <br>
         <br>
         <div class="modal-label">Precio</div>
-        <input class="modal-input" type="text" value="{{product.product_price}}">
+        <input class="modal-input" type="text"[(ngModel)]="product.product_price" value="{{product.product_price}}">
         <br>
         <br>
         <div class="modal-label">Existencias</div>
-        <input class="modal-input" type="text" value="{{product.product_stock}}">
+        <input class="modal-input" type="text" [(ngModel)]="product.product_stock" value="{{product.product_stock}}">
         <br>
         <br>
         <div class="modal-label">URL de la imagen</div>
-        <input class="modal-input" type="text" value="{{product.product_img}}">
+        <input class="modal-input" type="text"  [(ngModel)]="product.product_img"value="{{product.product_img}}">
         <br>
         <br>
         <br>
     
         <div class="buttons-area">
             <button mat-raised-button style="background-color: red; color:white" (click)="toggleModal()">Cancelar</button>
-            <button mat-raised-button style="background-color: green; color: white;">Guardar</button>
+            <button mat-raised-button style="background-color: green; color: white" (click)="updateProduct()">Guardar</button>
         </div>
     </div>
 

@@ -38,10 +38,12 @@ exports.getProducts = ((req, res, next) => {
 // Update product
 exports.updateProduct = (req, res, next) => {
     const product_id = req.body.product_id;
+    const product_name = req.body.product_name;
     const product_price = req.body.product_price;
     const product_stock = req.body.product_stock;
     const product_img = req.body.product_img;
     Product.findByPk(product_id).then(product => {
+        req.body.product_name = product_name ;
         product.product_price = product_price;
         product.product_stock = product_stock;
         product.product_img = product_img;
@@ -50,6 +52,7 @@ exports.updateProduct = (req, res, next) => {
                 //message: "Product updated successfully",
                 product: {
                     product_id: product_id,
+                    product_name: product_name,
                     product_price: product_price,
                     product_stock: product_stock,
                     product_img: product_img

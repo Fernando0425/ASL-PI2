@@ -18,7 +18,7 @@ export class ProductsService {
     return this.http.post("http://localhost:3000/products", product);
   }
   
-  /*public updateProduct(id: string,updateProduct: Product):{
-    return this.http.put("http://localhost:3000/products/${id}", updateProduct);
-  }*/
+  public updateProduct(id: Number,updateProduct: Product){
+    return this.http.put('http://localhost:3000/products',updateProduct);
+  }
 }
