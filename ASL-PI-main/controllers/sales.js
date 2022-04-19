@@ -3,13 +3,10 @@ const Product = require('../models/product');
 
 exports.getSales = (req, res, next) => {
     Sale.findAll().then(sales => {
-        res.status(200).json({
-            //message: "Sales retrieve succesfully",
-            sales,
-        });
+        res.send(sales)
     }).catch(err => {
         res.status(200).json({
-            //message: "Could not retrieve sales"
+            message: "Could not retrieve sales"
         });
     });
 

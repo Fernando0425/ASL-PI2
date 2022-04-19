@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-/*import { salesOriginal } from '../controllers/sale.controller';*/
+import { salesOriginal } from '../controllers/sale.controller';
+import {Sale} from '../models/sale.model'
+import { ProductsService} from '../services/products.service'
 
 @Component({
     selector: 'sales-component',
@@ -8,8 +10,24 @@ import { Component } from '@angular/core';
 })
 
 export class SalesComponent {
-    sales = [];
-    displayedColumns: string[] = ['id', 'date', 'day', 'month', 'year', 'total', 'articles']
+
+    constructor(private productsService: ProductsService){
+
+    }
+    sales: Sale[] = [];
+    ngOnInit(){
+        this.productsService.getSales().subscribe(
+            res => {
+                this.sales = res; 
+                //this.Filteredproducts = res; 
+                console.log(this.sales);
+            },
+            err => console.log(err)
+        )
+    }
+
+    
+    displayedColumns: string[] = ['id', 'date', 'total']
     days = ['Domingo', 'Lunes','Martes', 'Miercoles','Jueves', 'Viernes', 'Sabado']
     months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo','Junio','Julio', 'Agosto','Septiembre','Octubre','Noviembre', 'Diciembre']
 

@@ -5,7 +5,7 @@ export const addNewSale = (sale: Sale) => {
 }
 
 export const salesOriginal: Sale[] = [
-    {
+   /* {
         sale_id: 1,
         sale_date: Date(),
         sale_total: 120,
@@ -194,7 +194,7 @@ export const salesOriginal: Sale[] = [
         sale_number_articles: 11,
         sale_quantities: [1,2,3]
 
-    },
+    },*/
 
 
 ];

@@ -29,6 +29,10 @@ export class ProductsService {
   public addProductSale(product: Product_sale){
     return this.http.post("http://localhost:3000/sales", product);
   }
+  public getSales(): Observable<Sale[]>{
+      return this.http.get<Sale[]>("http://localhost:3000/sales");
+    }
+  
 
   public getSalesProduct(id : Product_sale){
     return this.http.get("http://localhost:3000/sales/products");
