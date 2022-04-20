@@ -15,7 +15,8 @@ import { MatTableModule } from '@angular/material/table';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatSortModule } from '@angular/material/sort';
 import {MatRippleModule} from '@angular/material/core'; 
-import { MatInputModule } from "@angular/material/input"
+import { MatInputModule } from "@angular/material/input";
+import { MatDialogModule } from '@angular/material/dialog';
 
 // Component imports
 import { HomeComponent } from './home-page/home.component';
@@ -32,6 +33,8 @@ import { BasketCardComponent } from './basket-card/basket-card.component';
 import {ProductsService} from './services/products.service'
 import { ObjToArrayPipe } from './objToArray.pipe';
 import { FilterPipe } from './filter.pipe';
+import { TicketComponent } from './ticket/ticket.component';
+
 
 
 // Routes declaration
@@ -45,7 +48,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
+  declarations: [		
     AppComponent,
     HomeComponent,
     NavbarComponent,
@@ -58,8 +61,9 @@ const routes: Routes = [
     ClickableCardComponent,
     BasketCardComponent,
     ObjToArrayPipe,
-    FilterPipe
-  ],
+    FilterPipe,
+      TicketComponent
+   ],
   imports: [
     BrowserModule, 
     [RouterModule.forRoot(routes), BrowserAnimationsModule],
@@ -73,14 +77,17 @@ const routes: Routes = [
     MatRippleModule,
     ReactiveFormsModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   exports: [
     [RouterModule],
+    MatDialogModule
   ],
   providers: [
     ProductsService
   ],
   bootstrap: [AppComponent],
+  entryComponents:[TicketComponent]
 })
 export class AppModule { }

@@ -5,12 +5,15 @@ import { Sale } from "../models/sale.model";
 import { Product_sale } from "../models/product_sale";
 import { Sale_id } from "../models/Sale_id";
 import Swal from 'sweetalert2';
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog"
+import { TicketComponent } from "../ticket/ticket.component";
 /*declare var require: any;
 const jsPDF = require('jspdf');*/
 
-import pdfMake from 'pdfmake/build/pdfmake';
+/*import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-pdfMake.vfs = pdfFonts.pdfMake.vfs
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs*/
 
 @Component({
     selector: "new-sale-page",
@@ -19,6 +22,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs
 })
 
 export class NewSalePage {
+    
     basket: Product[] = [];
     quantities: Number[] = [];
     totals: Number[] = [];
@@ -27,15 +31,19 @@ export class NewSalePage {
     id: Sale_id={
         sale_id: 0,
     };
+    productos: any = [];
     product_sale: Product_sale={
         total: 0,
         products_id: [],
         quantity: []
     };
+    
+    constructor(private productsService: ProductsService, private dialog: MatDialog){
+
+    }
     active = false;
-
-    constructor(private productsService: ProductsService){
-
+    toggleModal() {
+        this.active = !this.active;
     }
 
     products: Product[] = [];
@@ -174,45 +182,31 @@ export class NewSalePage {
                 this.productsService.getSalesProduct(this.id)
                 .subscribe(
             res =>{
-                console.log(res);
-            },
-            err => console.log(err)
-            )
-            this.eraseProd();
-            this.CreatePdf()
+                //console.log(res);
+                //this.CreatePdf(res)
+                var aux = Object.values(res);
+                var aux2 = aux[0];
+                var products = aux2['products'];
+                
+                for(let i=0; i<products.length; i++){
+                    this.productos.push(products[i]);
+                }
+                console.log(this.productos);
+                    },
+                    err => console.log(err)
+                    )
+                    this.eraseProd();
+                this.toggleModal();
             
       
             } else if (result.isDismissed) {
-      
-              console.log('Clicked No, File is safe!');
       
             }
           })
     }
 
-    CreatePdf(){
-        var fecha = "2520";
-        const pdfDefinition: any = {
-            content: [
-                {text: 'Reporte de venta:'+ fecha, style: 'subheader'},
-                {text: 'Id de venta: '},
-                {text: 'Fecha de la venta: '},
-                {text: 'Total de la venta: '},
-                //Cada Producto for 
-                {text: 'Id Producto: ', style: 'subheader'},
-                {bold: true,
-                    ul:[
-                        'Nombre del producto: ',
-                        'Precio del producto: ',
-                        'Cantidad: '
-                    ]
-                }
-                
-
-            ]
-        }
-        const pdf = pdfMake.createPdf(pdfDefinition);
-        pdf.open();
+    Dialog(){
+        this.dialog.open(TicketComponent)
     }
 }
 
