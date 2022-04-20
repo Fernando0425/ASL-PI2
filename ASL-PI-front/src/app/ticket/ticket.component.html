@@ -1,4 +1,3 @@
-<div class="modal-container" [ngClass]="{'modal-active': active}" *ngIf="active"></div>
     <div class="ticket">
         <img src="https://yt3.ggpht.com/-3BKTe8YFlbA/AAAAAAAAAAI/AAAAAAAAAAA/ad0jqQ4IkGE/s900-c-k-no-mo-rj-c0xffffff/photo.jpg" alt="Logotipo">
         <p class="centrado">TICKET DE VENTA
@@ -12,8 +11,8 @@
                     <th class="precio">$$</th>
                 </tr>
             </thead>
-            <tbody *ngIf="sale">
-                <tr *ngFor="let product of sale">
+            <tbody *ngIf="data">
+                <tr *ngFor="let product of data">
                     <td class="cantidad">{{product.product_name}}</td>
                     <td class="producto">{{product.product_price}}</td>
                     <td class="precio">{{product.product_id}}</td>

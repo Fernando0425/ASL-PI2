@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,Inject } from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-ticket',
@@ -6,17 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent implements OnInit {
-
-  @Input() sale!: any;
-  constructor() { }
-
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  
   ngOnInit() {
+    console.log(this.data)
   }
-
-  active = false;
-
-    toggleModal() {
-        this.active = !this.active;
-    }
-
 }

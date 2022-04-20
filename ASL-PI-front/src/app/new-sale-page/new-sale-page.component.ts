@@ -182,8 +182,6 @@ export class NewSalePage {
                 this.productsService.getSalesProduct(this.id)
                 .subscribe(
             res =>{
-                //console.log(res);
-                //this.CreatePdf(res)
                 var aux = Object.values(res);
                 var aux2 = aux[0];
                 var products = aux2['products'];
@@ -191,7 +189,8 @@ export class NewSalePage {
                 for(let i=0; i<products.length; i++){
                     this.productos.push(products[i]);
                 }
-                console.log(this.productos);
+                this.Dialog();
+                //console.log(this.productos);
                     },
                     err => console.log(err)
                     )
@@ -206,7 +205,7 @@ export class NewSalePage {
     }
 
     Dialog(){
-        this.dialog.open(TicketComponent)
+        this.dialog.open(TicketComponent,{data: this.productos});
     }
 }
 
