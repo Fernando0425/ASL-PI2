@@ -46,7 +46,7 @@ exports.updateProduct = (req, res, next) => {
         req.body.product_name = product_name ;
         product.product_price = product_price;
         product.product_stock = product_stock;
-        product.product_img = product_img;
+        product.product_img = product_img;;
         product.save().then(result => {
             res.status(200).json({
                 //message: "Product updated successfully",

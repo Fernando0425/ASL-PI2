@@ -5,6 +5,12 @@ import { Sale } from "../models/sale.model";
 import { Product_sale } from "../models/product_sale";
 import { Sale_id } from "../models/Sale_id";
 import Swal from 'sweetalert2';
+/*declare var require: any;
+const jsPDF = require('jspdf');*/
+
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs
 
 @Component({
     selector: "new-sale-page",
@@ -19,7 +25,7 @@ export class NewSalePage {
     finalTotal = 0;
     searchText = '';
     id: Sale_id={
-        sale_id: 0
+        sale_id: 0,
     };
     product_sale: Product_sale={
         total: 0,
@@ -117,6 +123,13 @@ export class NewSalePage {
         this.finalTotal = Number(this.totals.reduce((partial_sum, a) => Number(partial_sum) + Number(a),0))
     }
 
+    eraseProd(){
+        this.basket = [];
+        this.quantities = [];
+        this.totals = [];
+        this.finalTotal = Number(this.totals.reduce((partial_sum, a) => Number(partial_sum) + Number(a),0))
+    }
+
     newSale(){
         let idx_product: Number[] = [];
         this.basket.forEach(product => {
@@ -126,21 +139,26 @@ export class NewSalePage {
        this.product_sale= {
             total: this.finalTotal, //Quantity     
             products_id:idx_product , //Total
-            quantity:this.totals//Productos
+            quantity:this.quantities//Productos
        }
-       //console.log(this.product_sale);
        
             this.productsService.addProductSale(this.product_sale)
-        .subscribe(
-            res =>{
-                console.log(res);
-                this.confirm(res);
-            },
-            err => console.log(err)
-        )
+            .subscribe(
+                res =>{
+                    console.log(res);
+                    this.confirm(res);
+                },
+                err => console.log(err)
+            )
     }
 
     confirm(res: Object){
+        var id1 = Object.values(res);
+        var id2 = id1[0];
+
+        this.id={
+            sale_id:id2['sale_id'] ,
+        };
 
         Swal.fire({
             title: 'Exito',
@@ -152,13 +170,17 @@ export class NewSalePage {
           }).then((result) => {
       
             if (result.isConfirmed) {
-             /* this.productsService.getSalesProduct(res)
+             
+                this.productsService.getSalesProduct(this.id)
                 .subscribe(
             res =>{
                 console.log(res);
             },
             err => console.log(err)
-        )*/
+            )
+            this.eraseProd();
+            this.CreatePdf()
+            
       
             } else if (result.isDismissed) {
       
@@ -167,4 +189,32 @@ export class NewSalePage {
             }
           })
     }
+
+    CreatePdf(){
+        var fecha = "2520";
+        const pdfDefinition: any = {
+            content: [
+                {text: 'Reporte de venta:'+ fecha, style: 'subheader'},
+                {text: 'Id de venta: '},
+                {text: 'Fecha de la venta: '},
+                {text: 'Total de la venta: '},
+                //Cada Producto for 
+                {text: 'Id Producto: ', style: 'subheader'},
+                {bold: true,
+                    ul:[
+                        'Nombre del producto: ',
+                        'Precio del producto: ',
+                        'Cantidad: '
+                    ]
+                }
+                
+
+            ]
+        }
+        const pdf = pdfMake.createPdf(pdfDefinition);
+        pdf.open();
+    }
 }
+
+
+//ALTER TABLE asl.`tienda.sale_products` AUTO_INCREMENT = 1;

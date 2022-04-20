@@ -13,22 +13,17 @@ exports.getSales = (req, res, next) => {
 };
 
 exports.getSaleProducts = (req, res, next) => {
-    const sale_id = req.body.sale_id;
-    console.log(sale_id);
-    Sale.findAll({
-        where: {
-            sale_id: sale_id
-        },
-        include: Product
-    }).then(results => {
-        res.status(200).json(results[0]);
-    }).catch(err => {
-        res.status(500).json({
-            message: "Could not retrieve sale products"+sale_id,
-            error: err
+        const sale_id = req.body.sale_id;
+        console.log(sale_id);
+        Sale.findAll({
+            where: {sale_id: sale_id},include:Product
+        }).then(results =>{
+            res.send(results)
+        }).catch(err => {
+            res.status(200).json({
+                message: "Could not retrieve sales"
+            });
         });
-        console.log(err);
-    });
 };
 
 
