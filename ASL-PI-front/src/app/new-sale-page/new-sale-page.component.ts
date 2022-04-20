@@ -205,7 +205,7 @@ export class NewSalePage {
     }
 
     Dialog(){
-        this.dialog.open(TicketComponent,{data: this.productos});
+        this.dialog.open(TicketComponent,{width: '250px',height:'auto',data: this.productos});
     }
 }
 
