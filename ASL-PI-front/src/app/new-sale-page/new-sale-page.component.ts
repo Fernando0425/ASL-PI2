@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { ProductsService} from '../services/products.service'
 import { Product } from "../models/product.model";
-import { Sale } from "../models/sale.model";
 import { Product_sale } from "../models/product_sale";
 import { Sale_id } from "../models/Sale_id";
 import Swal from 'sweetalert2';
@@ -142,7 +141,6 @@ export class NewSalePage {
             products_id:idx_product , //Total
             quantity:this.quantities//Productos
        }
-       
             this.productsService.addProductSale(this.product_sale)
             .subscribe(
                 res =>{

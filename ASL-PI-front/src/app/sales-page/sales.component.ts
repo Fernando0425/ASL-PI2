@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { salesOriginal } from '../controllers/sale.controller';
 import {Sale} from '../models/sale.model'
 import { ProductsService} from '../services/products.service'
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog"
+import { TicketComponent } from "../ticket/ticket.component";
+import { Sale_id } from '../models/Sale_id';
 
 @Component({
     selector: 'sales-component',
@@ -10,8 +12,11 @@ import { ProductsService} from '../services/products.service'
 })
 
 export class SalesComponent {
-
-    constructor(private productsService: ProductsService){
+    productos: any = [];
+    id: Sale_id={
+        sale_id: 0,
+    };
+    constructor(private productsService: ProductsService,private dialog: MatDialog){
 
     }
     sales: Sale[] = [];
@@ -20,7 +25,7 @@ export class SalesComponent {
             res => {
                 this.sales = res; 
                 //this.Filteredproducts = res; 
-                console.log(this.sales);
+                //console.log(this.sales);
             },
             err => console.log(err)
         )
@@ -36,5 +41,28 @@ export class SalesComponent {
         let dateString = '';
         dateString += newDate.getDate() + '/' + (newDate.getMonth() + 1) + '/' + newDate.getFullYear();
         return dateString 
+    }
+
+    findID($event){
+        //console.log($event);
+
+        this.id={
+            sale_id:$event['sale_id'] ,
+        };
+        //console.log(this.id)
+        this.productsService.getSalesProduct(this.id)
+            .subscribe(
+                res =>{
+                    var aux = Object.values(res);
+                    this.productos = aux[0];
+                    //console.log(this.productos);
+                    this.Dialog();
+                        },
+                err => console.log(err)
+                )
+
+    }
+    Dialog(){
+            this.dialog.open(TicketComponent,{width: '250px',height:'auto',data: this.productos});
     }
 }

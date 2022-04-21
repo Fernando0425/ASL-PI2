@@ -34,7 +34,7 @@ constructor(private productsService: ProductsService){
     
     updateProduct(){
         console.log()
-        this.productsService.updateProduct(this.product.product_id! , this.product)
+        this.productsService.updateProduct(this.product!)
         .subscribe(
             res => {
                 console.log(res);
