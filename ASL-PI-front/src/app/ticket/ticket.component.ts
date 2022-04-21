@@ -8,9 +8,17 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
   styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent implements OnInit {
+  productos: any = [];
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
   
   ngOnInit() {
-    console.log(this.data)
+    var products = this.data['products'];
+                
+    for(let i=0; i<products.length; i++){
+      this.productos.push(products[i]);
+    }
+    //console.log(this.productos)
   }
+
+  
 }

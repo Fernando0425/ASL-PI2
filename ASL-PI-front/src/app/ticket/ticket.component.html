@@ -1,26 +1,36 @@
-    <div class="ticket">
-        <img src="https://yt3.ggpht.com/-3BKTe8YFlbA/AAAAAAAAAAI/AAAAAAAAAAA/ad0jqQ4IkGE/s900-c-k-no-mo-rj-c0xffffff/photo.jpg" alt="Logotipo">
+    <div class="ticket" align = "center">
+        <img src="assets/svg/asl-logo.svg" alt="Logotipo">
         <p class="centrado">TICKET DE VENTA
-            <br>New New York
-            <br>17/10/2017 02:22 a.m.</p>
+            <br>ASL
+            <br>{{data['sale_date']}}</p>
         <table>
             <thead>
                 <tr>
-                    <th class="cantidad">Producto</th>
-                    <th class="producto">Cantidad</th>
-                    <th class="precio">$(ID)</th>
+                    <th class="producto">Producto</th>
+                    <th class="cantidad">Cantidad</th>
+                    <th class="precio">$</th>
                 </tr>
             </thead>
             <tbody *ngIf="data">
-                <tr *ngFor="let product of data">
-                    <td class="cantidad">{{product.product_name}}</td>
-                    <td class="producto">{{product.product_price}}</td>
-                    <td class="precio">{{product.product_id}}</td>
+                <tr *ngFor="let product of productos">
+                    <td class="producto">{{product.product_name}}</td>
+                    <td class="cantidad">{{product.sale_product['quantity']}}</td>
+                    <td class="precio">{{product.product_price*product.sale_product['quantity']}}</td>
                 </tr>
+                <tr>
+                    <td></td>
+                    <td>Total: </td>
+                    <b><td>{{data['sale_total']}}</td></b>
+                </tr>
+                    
             </tbody>
         </table>
         <p class="centrado">¡GRACIAS POR SU COMPRA!
-            <br>parzibyte.me</p>
-             <button class="oculto-impresion">Imprimir</button>
+            <br></p>
+             <button class="oculto-impresion" onclick="window.print()">Imprimir</button>
     </div>
-   
+   <script>
+       function imprimir() {
+            window.print();
+        }
+   </script>

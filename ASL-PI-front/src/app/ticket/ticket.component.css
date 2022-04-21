@@ -1,3 +1,16 @@
+* {
+    font-size: 15px;
+    font-family: 'Times New Roman';
+}
+
+td,
+th,
+tr,
+table {
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}
+
 td.producto,
 th.producto {
     width: 75px;
@@ -31,7 +44,7 @@ th.precio {
 
 img {
     max-width: inherit;
-    width: inherit;
+    width: 150px;
 }
 
 @media print {

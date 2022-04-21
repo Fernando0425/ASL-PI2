@@ -7,13 +7,6 @@ import { Sale_id } from "../models/Sale_id";
 import Swal from 'sweetalert2';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog"
 import { TicketComponent } from "../ticket/ticket.component";
-/*declare var require: any;
-const jsPDF = require('jspdf');*/
-
-/*import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-
-pdfMake.vfs = pdfFonts.pdfMake.vfs*/
 
 @Component({
     selector: "new-sale-page",
@@ -153,7 +146,7 @@ export class NewSalePage {
             this.productsService.addProductSale(this.product_sale)
             .subscribe(
                 res =>{
-                    console.log(res);
+                    //console.log(res);
                     this.confirm(res);
                 },
                 err => console.log(err)
@@ -183,12 +176,7 @@ export class NewSalePage {
                 .subscribe(
             res =>{
                 var aux = Object.values(res);
-                var aux2 = aux[0];
-                var products = aux2['products'];
-                
-                for(let i=0; i<products.length; i++){
-                    this.productos.push(products[i]);
-                }
+                this.productos = aux[0];
                 this.Dialog();
                 //console.log(this.productos);
                     },
