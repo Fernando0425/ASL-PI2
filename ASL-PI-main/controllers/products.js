@@ -51,7 +51,7 @@ exports.updateProduct = (req, res, next) => {
     },{
         where:{product_id: product_id}
     }).then(result =>{
-        //res.send(result);
+        res.send(result);
     }).catch(err =>{
         //res.send(err);
     })

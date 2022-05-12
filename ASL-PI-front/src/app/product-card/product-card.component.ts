@@ -37,7 +37,7 @@ constructor(private productsService: ProductsService){
         this.productsService.updateProduct(this.product!)
         .subscribe(
             res => {
-                console.log(res);
+                //console.log(res);
                 this.toggleModal();
             },
             err => console.log(err)
